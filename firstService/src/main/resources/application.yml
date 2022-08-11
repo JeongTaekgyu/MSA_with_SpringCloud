@@ -5,6 +5,7 @@ spring:
   application:
     name: my-first-service
 
+# 유레카 서버 자체는 기동을 하되 자기 자신의 정보를 외부에 있는 다른 마이크로서비스가 유레카 서버로 부터 어떤 정보를 주고 받는 역할을 할 필요가 없기 때문에 자기 자신을 등록하지 않는다.
 eureka:
   client:
     fetch-registry: false
