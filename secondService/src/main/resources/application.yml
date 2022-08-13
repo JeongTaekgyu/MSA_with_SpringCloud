@@ -5,7 +5,10 @@ spring:
   application:
     name: my-second-service
 
+
 eureka:
-  client:
-    fetch-registry: false
-    register-with-eureka: false
+  client: # eureka 클라이언트 등록
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

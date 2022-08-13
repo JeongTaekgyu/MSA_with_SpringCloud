@@ -2,9 +2,9 @@ server:
   port: 8000
 
 eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
+  client: # eureka 클라이언트 등록
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
 
@@ -21,7 +21,7 @@ spring:
             postLogger: true
       routes:
         - id: first-service
-          uri: http://localhost:8081/ # 여기로 요청할거다.
+          uri: lb://MY-FIRST-SERVICE # application 이름을 적는다.  # http://localhost:8081/ # 여기로 요청할거다.
           predicates: # 조건절이다.
             - Path=/first-service/**  # 사용자가 이걸호출하면 위에 uri로 간다. 즉 http://localhost:8081/first-service/** 으로 간다.
           filters:
@@ -29,7 +29,7 @@ spring:
 #            - AddResponseHeader=first-request, first-response-header2
             - CustomFilter  # CustomFilter 등록
         - id: second-service
-          uri: http://localhost:8082/ # 여기로 요청할거다.
+          uri: lb://MY-SECOND-SERVICE # application 이름을 적는다. # http://localhost:8082/ # 여기로 요청할거다.
           predicates: # 조건절이다.
             - Path=/second-service/** # 사용자가 이걸호출하면 위에 uri로 간다.
           filters:
