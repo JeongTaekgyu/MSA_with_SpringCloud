@@ -35,4 +35,9 @@ spring:
           filters:
 #            - AddRequestHeader=second-request, second-request-header2
 #            - AddResponseHeader=second-request, second-response-header2
-            - CustomFilter  # CustomFilter 등록
+            - name : CustomFilter  # CustomFilter 등록
+            - name : LoggingFilter  # LoggingFilter 등록
+              args:
+                baseMessage: Hi, there.
+                preLogger: true
+                postLogger: true
