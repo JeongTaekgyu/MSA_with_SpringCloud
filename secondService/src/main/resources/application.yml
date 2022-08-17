@@ -5,7 +5,6 @@ spring:
   application:
     name: my-second-service
 
-
 eureka:
   client: # eureka 클라이언트 등록
     register-with-eureka: true
