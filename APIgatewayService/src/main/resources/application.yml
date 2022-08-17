@@ -23,7 +23,7 @@ spring:
         - id: first-service
           uri: lb://MY-FIRST-SERVICE # application 이름을 적는다. discovery service안에 포함되어 있는 인스턴스 이름을 찾겠다.
           predicates: # 조건절이다.
-            - Path=/first-service/**  # 사용자가 이걸호출하면 위에 uri로 간다. 즉 http://localhost:8081/first-service/** 으로 간다.
+            - Path=/first-service/**  # 사용자가 이걸호출하면 위에 uri로 간다.
           filters:
 #            - AddRequestHeader=first-request, first-request-header2
 #            - AddResponseHeader=first-request, first-response-header2
