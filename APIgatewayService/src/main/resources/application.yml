@@ -24,6 +24,10 @@ spring:
           uri: lb://USER-SERVICE #
           predicates: # 조건절이다.
             - Path=/user-service/** #
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE #
+          predicates: # 조건절이다.
+            - Path=/catalog-service/** # 이 모든 요청에 대해서 lb://CATALOG-SERVICE 여기로 가라
         - id: first-service
           uri: lb://MY-FIRST-SERVICE # application 이름을 적는다. discovery service안에 포함되어 있는 인스턴스 이름을 찾겠다.
           predicates: # 조건절이다.
