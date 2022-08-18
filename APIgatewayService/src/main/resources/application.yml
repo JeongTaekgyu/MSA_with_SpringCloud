@@ -20,6 +20,10 @@ spring:
             preLogger: true
             postLogger: true
       routes:
+        - id: user-service
+          uri: lb://USER-SERVICE #
+          predicates: # 조건절이다.
+            - Path=/user-service/** #
         - id: first-service
           uri: lb://MY-FIRST-SERVICE # application 이름을 적는다. discovery service안에 포함되어 있는 인스턴스 이름을 찾겠다.
           predicates: # 조건절이다.
