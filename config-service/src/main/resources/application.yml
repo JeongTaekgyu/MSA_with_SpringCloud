@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://C:\Users\taekg\IdeaProjects\Inflearn\msa\git-local-repo
+#          uri: file://c/Users/taekg/IdeaProjects/Inflearn/msa/git-local-repo
+
