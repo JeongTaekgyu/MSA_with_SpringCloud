@@ -52,6 +52,15 @@ spring:
             - AuthorizationHeaderFilter
             # /user-service/** 로 들어오는 건 위에 따로 표시한 /login(로그인)과 /users(회원가입)를 제외하고 AuthorizationHeaderFilter 를 거친다.
             # 즉, 인증이 필요없는 로그인과 회원가입은 AuthorizationHeaderFilter를 적용시키지 않았고 나머지는 적용시켰다.
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates: # 조건절이다.
+            - Path=/user-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
         - id: catalog-service
           uri: lb://CATALOG-SERVICE #
           predicates: # 조건절이다.
@@ -81,6 +90,12 @@ spring:
                 baseMessage: Hi, there.
                 preLogger: true
                 postLogger: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace
 
 token:
   secret: user_token
