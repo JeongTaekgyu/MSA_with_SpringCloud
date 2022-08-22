@@ -4,10 +4,14 @@ server:
 spring:
   application:
     name: config-service
+  profiles:
+    active: native
   cloud:
     config:
       server:
+        native:
+          search-locations: file:///C:\Users\taekg\IdeaProjects\Inflearn\msa\native-file-repo
         git:
-          uri: file://C:\Users\taekg\IdeaProjects\Inflearn\msa\git-local-repo
-#          uri: file://c/Users/taekg/IdeaProjects/Inflearn/msa/git-local-repo
+#          uri: file://C:\Users\taekg\IdeaProjects\Inflearn\msa\git-local-repo
+          uri: https://github.com/JeongTaekgyu/spring-cloud-config.git
 
