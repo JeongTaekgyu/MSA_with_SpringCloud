@@ -3,3 +3,5 @@ spring:
     config:
       uri: http://127.0.0.1:8888
       name: ecommerce # ecommerce.yml 파일을 가져온다.
+  profiles:
+    active: dev # ecommerce-dev.yml 파일을 가져옴
