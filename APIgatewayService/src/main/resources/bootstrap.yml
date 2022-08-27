@@ -2,6 +2,8 @@ spring:
   cloud:
     config:
       uri: http://127.0.0.1:8888
-      name: ecommerce # ecommerce.yml 파일을 가져온다.
-  profiles:
-    active: dev # ecommerce-dev.yml 파일을 가져옴
+      name: config-service  # config-service에 application name과 같은이름이 매칭이되면 해당 application.yml파일을 읽어온다.
+      # 물론 config-service에는 location 정보가 설정돼 있고 그 경로를 따라간다.
+#      name: ecommerce # ecommerce.yml 파일을 가져온다.
+#  profiles:
+#    active: dev # ecommerce-dev.yml 파일을 가져옴
