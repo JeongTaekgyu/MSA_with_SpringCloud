@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: config-service
+  # config-server에 변경 요청사항이 들어오면 요청사항을 받았다고 rabbitmq에 통보를 해주고
+  # rabbitmq에 등록되어진 또 다른 마이크로 서비스에 그 정보를 push한다.
+  # 즉, 각 마이크로 서비스가 클라이언트 역할도 같이 한다.
+  rabbitmq: # rabbitmq 접속하기위한 정보
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   profiles:
     active: native
   cloud:
@@ -15,3 +23,8 @@ spring:
 #          uri: file://C:\Users\taekg\IdeaProjects\Inflearn\msa\git-local-repo
           uri: https://github.com/JeongTaekgyu/spring-cloud-config.git
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh

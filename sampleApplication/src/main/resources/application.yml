@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: user-service
+  # user-service 에 변경 요청사항이 들어오면 요청사항을 받았다고 rabbitmq에 통보를 해주고
+  # rabbitmq에 등록되어진 또 다른 마이크로 서비스에 그 정보를 push한다.
+  # 즉, 각 마이크로 서비스가 클라이언트 역할도 같이 한다.
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   h2:
     console:
       enabled: true
@@ -36,7 +44,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, beans
+        include: refresh, health, beans, busrefresh
 
 #token:
 #  expiration_time: 86400000 # 하루짜리 토큰
