@@ -18,11 +18,11 @@ spring:
       settings:
         web-allow-others: true
       path: /h2-console
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testMsaDb  # jdbc url
-#    username:
-#    password:
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:testMsaDb  # jdbc url
+##    username:
+##    password:
 
 eureka:
   instance:
@@ -31,7 +31,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true # fetch-registry? Eureka ????? ?????? ??? ????? ??? ???? ???? ?????. true? ????, ??? ??? ???? ????.
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka # ??? ?? (127.0.0.1 = localhost)
+      defaultZone: http://127.0.0.1:8761/eureka # 유레카에 등록한다. (127.0.0.1 = localhost)
 
 greeting:
   message: Welcome to thr Simple E-commerce
