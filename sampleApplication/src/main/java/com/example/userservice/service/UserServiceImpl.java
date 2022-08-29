@@ -1,5 +1,6 @@
 package com.example.userservice.service;
 
+import com.example.userservice.client.OrderServiceClient;
 import com.example.userservice.dto.UserDto;
 import com.example.userservice.repository.UserEntity;
 import com.example.userservice.repository.UserRepository;
@@ -16,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -31,6 +31,8 @@ public class UserServiceImpl implements UserService{
 
     Environment env;
     RestTemplate restTemplate;
+
+    OrderServiceClient orderServiceClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -47,11 +49,14 @@ public class UserServiceImpl implements UserService{
     public UserServiceImpl(UserRepository userRepository,
                            BCryptPasswordEncoder passwordEncoder,
                            Environment env,
-                           RestTemplate restTemplate){
+                           RestTemplate restTemplate,
+                           OrderServiceClient orderServiceClient
+    ){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.env = env;
         this.restTemplate = restTemplate;
+        this.orderServiceClient = orderServiceClient;
     }
 
     @Override
@@ -83,9 +88,9 @@ public class UserServiceImpl implements UserService{
         UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 //        List<ResponseOrder> orders = new ArrayList<>();
 
-        /* Using as RestTemplate */
+        /* Using a RestTemplate - 지금은 사용하지 않는다. */
         // 호출하고자하는 orderUrl
-        String orderUrl = String.format(env.getProperty("order_service.url"), userId);  // order_service에 파라미터가 있어서 format으로 치환함
+        /*String orderUrl = String.format(env.getProperty("order_service.url"), userId);  // order_service에 파라미터가 있어서 format으로 치환함
 
         // 주소값, 호출하고자하는 메서드의 타입, 요청할때 파라미터, 어떤 형식으로 전달받을 것인지
         ResponseEntity<List<ResponseOrder>> orderListResponse =
@@ -94,7 +99,10 @@ public class UserServiceImpl implements UserService{
                 }); // 이걸 호출하니까 order-service의
         // orderUrl = http://127.0.0.1:8000/order-service/{userId}/orders 로 넘어가네
         // 그리고 order-service에서 반환하면 다시 여기로 온다.
-        List<ResponseOrder> orderList = orderListResponse.getBody();
+        List<ResponseOrder> orderList = orderListResponse.getBody();*/
+
+        /* Using a feign client */
+        List<ResponseOrder> orderList = orderServiceClient.getOrders(userId);
 
         userDto.setOrders(orderList);
 
