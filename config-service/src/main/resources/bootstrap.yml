@@ -1,2 +1,2 @@
 encrypt:
-  key: abcdefghijklmnopqrstuvwxyz0131456789
+  key: abcdefghijklmnopqrstuvwxyz0131456789 # 현재 대칭키 방식
