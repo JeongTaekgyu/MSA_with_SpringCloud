@@ -11,6 +11,6 @@ import java.util.List;
 public interface OrderServiceClient {
 
     // 인터페이스에 선언하는 메서드는 전부다 public이다.
-    @GetMapping("/order-service/{userId}/orders")
+    @GetMapping("/order-service/{userId}/orders_ng")
     List<ResponseOrder> getOrders(@PathVariable String userId);
 }
