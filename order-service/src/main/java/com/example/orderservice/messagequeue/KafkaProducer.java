@@ -24,7 +24,7 @@ public class KafkaProducer {
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = "";
         try {
-            // String으로 전달하는데 이것을 json 형태를 가질 수 있도록 mapper 기능을 사용함
+            // String으로 전달하는데 이것을 json 형태를 가질 수 있도록 mapper 기능을 사용함. 즉, String인데 JSON 형태처럼 생김
             jsonInString = mapper.writeValueAsString(orderDto);
         } catch (JsonProcessingException ex){
             ex.printStackTrace();

@@ -18,7 +18,7 @@ public class OrderEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 120, unique = true)
+    @Column(nullable = false, length = 120, unique = true) // 이것 때문에 주문하면 유니크 에러나는듯
     private String productId;
 
     @Column(nullable = false)
