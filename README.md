@@ -18,4 +18,4 @@
 
 ### Example Code
 1. firstService - apigateway service 예시 서비스
-2. secondService - apigateway service ㅇ{시 서비스
+2. secondService - apigateway service 시 서비스
